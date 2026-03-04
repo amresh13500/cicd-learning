@@ -1,0 +1,24 @@
+name: My First Pipeline
+
+# When should this run?
+on: [push] 
+
+# What should it do?
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+
+      - name: Say Hello (Simulating a Test)
+        run: echo "The code has been downloaded and checked!"
+        
+      - name: Check file existence
+        run: |
+          if [ -f index.html ]; then
+            echo "index.html exists. Test Passed!"
+          else
+            echo "File missing!"
+            exit 1
+          fi
